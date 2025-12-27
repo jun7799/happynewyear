@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>许愿池</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">许愿池</div>
+    <a class="wish-btn" href="{{ wish_entry_url }}" target="_blank" rel="noopener">去许愿</a>
+  </header>
+  <main class="content">
+    <div id="danmaku" class="danmaku"></div>
+    <section class="list">
+      {% for w in wishes %}
+      <div class="wish">
+        <div class="wish-content">{{ w.content }}</div>
+        <div class="wish-author">— {{ w.author }}</div>
+      </div>
+      {% endfor %}
+    </section>
+  </main>
+  <script>
+    window.WISHES = {{ wishes|tojson }};
+  </script>
+  <script src="{{ url_for('static', filename='js/danmaku.js') }}"></script>
+</body>
+</html>

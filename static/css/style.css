@@ -1,0 +1,94 @@
+@font-face {
+  font-family: "SF Pro Display";
+  src: local("SF Pro Display"), local("SF Pro Text");
+}
+:root {
+  --red: #c40000;
+  --bg: #fff;
+  --text: #111;
+  --muted: #666;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+.topbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  backdrop-filter: saturate(180%) blur(20px);
+  background: rgba(255,255,255,.8);
+  border-bottom: 1px solid #eee;
+}
+.brand {
+  font-size: 20px;
+  font-weight: 600;
+}
+.wish-btn {
+  display: inline-block;
+  padding: 10px 14px;
+  background: var(--red);
+  color: #fff;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.content {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 80px;
+}
+.wish {
+  padding: 16px;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.04);
+  background: #fff;
+}
+.wish-content {
+  font-size: 16px;
+  line-height: 1.6;
+}
+.wish-author {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.danmaku {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 56px;
+  height: 180px;
+  pointer-events: none;
+  overflow: hidden;
+}
+.bullet {
+  position: absolute;
+  white-space: nowrap;
+  background: rgba(196,0,0,.85);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  transform: translateX(100vw);
+  animation: fly linear var(--dur) forwards;
+}
+@keyframes fly {
+  from { transform: translateX(100vw); }
+  to { transform: translateX(-120%); }
+}
