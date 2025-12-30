@@ -1,9 +1,5 @@
 # LeanCloud 云引擎配置文件
 
-# 安装依赖
-install:
-  - pip install -r requirements.txt
-
 # 启动命令
 run: gunicorn -w 2 -b 0.0.0.0:$LEANCLOUD_APP_PORT app:app
 
