@@ -1,7 +1,7 @@
 # LeanCloud 云引擎配置文件
 
 # 运行时环境
-runtime: python-3.9
+runtime: python-3.8
 
 # 安装依赖
 install: pip install -r requirements.txt
