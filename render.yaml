@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: happynewyear-backend
+    env: python
+    plan: free
+    region: singapore
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    autoDeploy: true
+    healthCheckPath: /health
+    envVars:
+      - key: FEISHU_APP_ID
+        fromSecret: FEISHU_APP_ID
+      - key: FEISHU_APP_SECRET
+        fromSecret: FEISHU_APP_SECRET
+      - key: FEISHU_BASE_ID
+        fromSecret: FEISHU_BASE_ID
+      - key: FEISHU_TABLE_ID
+        fromSecret: FEISHU_TABLE_ID

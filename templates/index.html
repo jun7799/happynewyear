@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>许愿池</title>
+  <meta name="description" content="新年许愿池 - 许下你的新年愿望，与大家分享美好的期许">
+  <title>新年许愿池 🏮</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
@@ -11,17 +12,25 @@
     <div class="brand">许愿池</div>
     <a class="wish-btn" href="{{ wish_entry_url }}" target="_blank" rel="noopener">去许愿</a>
   </header>
+
   <main class="content">
     <div id="danmaku" class="danmaku"></div>
+
     <section class="list">
       {% for w in wishes %}
       <div class="wish">
         <div class="wish-content">{{ w.content }}</div>
-        <div class="wish-author">— {{ w.author }}</div>
+        <div class="wish-author">{{ w.author }}</div>
       </div>
       {% endfor %}
     </section>
   </main>
+
+  <footer class="footer">
+    <p>用 <span class="footer-heart">❤️</span> 许下美好愿望 · 新年快乐</p>
+    <p style="margin-top: 8px; font-size: 12px; opacity: 0.7;">{{ wishes|length }} 个愿望已收集</p>
+  </footer>
+
   <script>
     window.WISHES = {{ wishes|tojson }};
   </script>
