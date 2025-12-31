@@ -5,35 +5,350 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="新年许愿池 - 许下你的新年愿望，与大家分享美好的期许">
   <title>新年许愿池 🏮</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+  <!-- 舞狮动画 -->
+  <div class="lion-dance-container">
+    <!-- 左边舞狮 -->
+    <div class="lion-wrapper lion-wrapper-left">
+      <svg class="lion-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="lionBodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#E53935"/>
+            <stop offset="100%" style="stop-color:#C62828"/>
+          </linearGradient>
+          <linearGradient id="lionHeadGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#EF5350"/>
+            <stop offset="100%" style="stop-color:#D32F2F"/>
+          </linearGradient>
+          <linearGradient id="hornGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#FFD700"/>
+            <stop offset="100%" style="stop-color:#FFA000"/>
+          </linearGradient>
+        </defs>
+
+        <!-- 身体毛球装饰 -->
+        <circle class="lion-body-fur" cx="55" cy="135" r="12" fill="#FFD700"/>
+        <circle class="lion-body-fur" cx="100" cy="145" r="12" fill="#FFD700"/>
+        <circle class="lion-body-fur" cx="145" cy="135" r="12" fill="#FFD700"/>
+
+        <!-- 身体 -->
+        <ellipse cx="100" cy="150" rx="60" ry="35" fill="url(#lionBodyGrad)"/>
+
+        <!-- 尾巴 -->
+        <path d="M40 150 Q20 140 25 120" stroke="url(#lionBodyGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <circle cx="25" cy="115" r="8" fill="#FFD700"/>
+
+        <!-- 头部 -->
+        <ellipse cx="100" cy="90" rx="55" ry="50" fill="url(#lionHeadGrad)"/>
+
+        <!-- 金色边框 -->
+        <ellipse cx="100" cy="90" rx="55" ry="50" fill="none" stroke="#FFD700" stroke-width="4"/>
+
+        <!-- 耳朵 -->
+        <g class="lion-ear-left">
+          <ellipse cx="48" cy="60" rx="15" ry="20" fill="#C62828"/>
+          <ellipse cx="48" cy="60" rx="8" ry="12" fill="#E53935"/>
+        </g>
+        <g class="lion-ear-right">
+          <ellipse cx="152" cy="60" rx="15" ry="20" fill="#C62828"/>
+          <ellipse cx="152" cy="60" rx="8" ry="12" fill="#E53935"/>
+        </g>
+
+        <!-- 角 -->
+        <path class="lion-horn-left" d="M70 50 Q65 35 70 25" stroke="url(#hornGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <path class="lion-horn-right" d="M130 50 Q135 35 130 25" stroke="url(#hornGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
+
+        <!-- 眼睛 -->
+        <g class="lion-eye-left">
+          <ellipse cx="80" cy="85" rx="16" ry="18" fill="white"/>
+          <g class="lion-eyelid">
+            <ellipse cx="80" cy="85" rx="16" ry="18" fill="white"/>
+          </g>
+          <circle class="lion-eye-pupil" cx="80" cy="87" r="9" fill="#1A1A1A"/>
+          <circle cx="76" cy="82" r="4" fill="white"/>
+        </g>
+        <g class="lion-eye-right">
+          <ellipse cx="120" cy="85" rx="16" ry="18" fill="white"/>
+          <g class="lion-eyelid">
+            <ellipse cx="120" cy="85" rx="16" ry="18" fill="white"/>
+          </g>
+          <circle class="lion-eye-pupil" cx="120" cy="87" r="9" fill="#1A1A1A"/>
+          <circle cx="116" cy="82" r="4" fill="white"/>
+        </g>
+
+        <!-- 鼻子 -->
+        <ellipse cx="100" cy="105" rx="18" ry="14" fill="#8B0000"/>
+        <ellipse cx="94" cy="107" rx="4" ry="5" fill="#1A1A1A"/>
+        <ellipse cx="106" cy="107" rx="4" ry="5" fill="#1A1A1A"/>
+
+        <!-- 嘴巴 -->
+        <g class="lion-mouth">
+          <path d="M85 120 Q100 135 115 120" fill="#FF6B6B"/>
+          <ellipse cx="100" cy="125" rx="12" ry="8" fill="#FF1744"/>
+        </g>
+
+        <!-- 胡须 -->
+        <g class="lion-whisker-left">
+          <path d="M55 95 L35 90" stroke="#FFD700" stroke-width="2"/>
+          <path d="M55 100 L32 98" stroke="#FFD700" stroke-width="2"/>
+          <path d="M55 105 L35 110" stroke="#FFD700" stroke-width="2"/>
+        </g>
+        <g class="lion-whisker-right">
+          <path d="M145 95 L165 90" stroke="#FFD700" stroke-width="2"/>
+          <path d="M145 100 L168 98" stroke="#FFD700" stroke-width="2"/>
+          <path d="M145 105 L165 110" stroke="#FFD700" stroke-width="2"/>
+        </g>
+
+        <!-- 额头装饰 -->
+        <circle cx="100" cy="55" r="10" fill="#FFD700"/>
+        <text x="100" y="60" text-anchor="middle" font-size="12" fill="#C62828">王</text>
+      </svg>
+    </div>
+
+    <!-- 绣球 -->
+    <div class="lion-ball-wrapper">
+      <svg class="lion-ball-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="ballGrad" cx="35%" cy="35%">
+            <stop offset="0%" style="stop-color:#FFEB3B"/>
+            <stop offset="100%" style="stop-color:#FFA000"/>
+          </radialGradient>
+        </defs>
+
+        <!-- 绣球主体 -->
+        <circle cx="50" cy="50" r="35" fill="url(#ballGrad)"/>
+
+        <!-- 装饰条纹 -->
+        <path d="M50 15 A35 35 0 0 1 50 85" fill="none" stroke="#D32F2F" stroke-width="3"/>
+        <path d="M50 15 A35 35 0 0 0 50 85" fill="none" stroke="#D32F2F" stroke-width="3"/>
+        <circle cx="50" cy="50" r="35" fill="none" stroke="#D32F2F" stroke-width="3"/>
+
+        <!-- 流苏 -->
+        <g class="lion-ball-tassel">
+          <path d="M40 80 Q35 95 40 100" stroke="#FFD700" stroke-width="4" fill="none"/>
+        </g>
+        <g class="lion-ball-tassel">
+          <path d="M50 82 Q50 97 50 102" stroke="#FFD700" stroke-width="4" fill="none"/>
+        </g>
+        <g class="lion-ball-tassel">
+          <path d="M60 80 Q65 95 60 100" stroke="#FFD700" stroke-width="4" fill="none"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- 右边舞狮 -->
+    <div class="lion-wrapper lion-wrapper-right">
+      <svg class="lion-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="lionBodyGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#E53935"/>
+            <stop offset="100%" style="stop-color:#C62828"/>
+          </linearGradient>
+          <linearGradient id="lionHeadGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#EF5350"/>
+            <stop offset="100%" style="stop-color:#D32F2F"/>
+          </linearGradient>
+          <linearGradient id="hornGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#FFD700"/>
+            <stop offset="100%" style="stop-color:#FFA000"/>
+          </linearGradient>
+        </defs>
+
+        <!-- 身体毛球装饰 -->
+        <circle class="lion-body-fur" cx="55" cy="135" r="12" fill="#FFD700"/>
+        <circle class="lion-body-fur" cx="100" cy="145" r="12" fill="#FFD700"/>
+        <circle class="lion-body-fur" cx="145" cy="135" r="12" fill="#FFD700"/>
+
+        <!-- 身体 -->
+        <ellipse cx="100" cy="150" rx="60" ry="35" fill="url(#lionBodyGrad2)"/>
+
+        <!-- 尾巴 -->
+        <path d="M40 150 Q20 140 25 120" stroke="url(#lionBodyGrad2)" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <circle cx="25" cy="115" r="8" fill="#FFD700"/>
+
+        <!-- 头部 -->
+        <ellipse cx="100" cy="90" rx="55" ry="50" fill="url(#lionHeadGrad2)"/>
+
+        <!-- 金色边框 -->
+        <ellipse cx="100" cy="90" rx="55" ry="50" fill="none" stroke="#FFD700" stroke-width="4"/>
+
+        <!-- 耳朵 -->
+        <g class="lion-ear-left">
+          <ellipse cx="48" cy="60" rx="15" ry="20" fill="#C62828"/>
+          <ellipse cx="48" cy="60" rx="8" ry="12" fill="#E53935"/>
+        </g>
+        <g class="lion-ear-right">
+          <ellipse cx="152" cy="60" rx="15" ry="20" fill="#C62828"/>
+          <ellipse cx="152" cy="60" rx="8" ry="12" fill="#E53935"/>
+        </g>
+
+        <!-- 角 -->
+        <path class="lion-horn-left" d="M70 50 Q65 35 70 25" stroke="url(#hornGrad2)" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <path class="lion-horn-right" d="M130 50 Q135 35 130 25" stroke="url(#hornGrad2)" stroke-width="8" fill="none" stroke-linecap="round"/>
+
+        <!-- 眼睛 -->
+        <g class="lion-eye-left">
+          <ellipse cx="80" cy="85" rx="16" ry="18" fill="white"/>
+          <g class="lion-eyelid">
+            <ellipse cx="80" cy="85" rx="16" ry="18" fill="white"/>
+          </g>
+          <circle class="lion-eye-pupil" cx="80" cy="87" r="9" fill="#1A1A1A"/>
+          <circle cx="76" cy="82" r="4" fill="white"/>
+        </g>
+        <g class="lion-eye-right">
+          <ellipse cx="120" cy="85" rx="16" ry="18" fill="white"/>
+          <g class="lion-eyelid">
+            <ellipse cx="120" cy="85" rx="16" ry="18" fill="white"/>
+          </g>
+          <circle class="lion-eye-pupil" cx="120" cy="87" r="9" fill="#1A1A1A"/>
+          <circle cx="116" cy="82" r="4" fill="white"/>
+        </g>
+
+        <!-- 鼻子 -->
+        <ellipse cx="100" cy="105" rx="18" ry="14" fill="#8B0000"/>
+        <ellipse cx="94" cy="107" rx="4" ry="5" fill="#1A1A1A"/>
+        <ellipse cx="106" cy="107" rx="4" ry="5" fill="#1A1A1A"/>
+
+        <!-- 嘴巴 -->
+        <g class="lion-mouth">
+          <path d="M85 120 Q100 135 115 120" fill="#FF6B6B"/>
+          <ellipse cx="100" cy="125" rx="12" ry="8" fill="#FF1744"/>
+        </g>
+
+        <!-- 胡须 -->
+        <g class="lion-whisker-left">
+          <path d="M55 95 L35 90" stroke="#FFD700" stroke-width="2"/>
+          <path d="M55 100 L32 98" stroke="#FFD700" stroke-width="2"/>
+          <path d="M55 105 L35 110" stroke="#FFD700" stroke-width="2"/>
+        </g>
+        <g class="lion-whisker-right">
+          <path d="M145 95 L165 90" stroke="#FFD700" stroke-width="2"/>
+          <path d="M145 100 L168 98" stroke="#FFD700" stroke-width="2"/>
+          <path d="M145 105 L165 110" stroke="#FFD700" stroke-width="2"/>
+        </g>
+
+        <!-- 额头装饰 -->
+        <circle cx="100" cy="55" r="10" fill="#FFD700"/>
+        <text x="100" y="60" text-anchor="middle" font-size="12" fill="#C62828">王</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 背景装饰层 -->
+  <div class="bg-layer">
+    <div class="lanterns">
+      <div class="lantern lantern-1"><span class="lantern-string"></span><span class="lantern-body">福</span></div>
+      <div class="lantern lantern-2"><span class="lantern-string"></span><span class="lantern-body">吉</span></div>
+      <div class="lantern lantern-3"><span class="lantern-string"></span><span class="lantern-body">祥</span></div>
+    </div>
+    <div class="snow-container"></div>
+    <div class="fireworks-container"></div>
+  </div>
+
+  <!-- 顶部导航栏 -->
   <header class="topbar">
-    <div class="brand">许愿池</div>
-    <a class="wish-btn" href="{{ wish_entry_url }}" target="_blank" rel="noopener">去许愿</a>
+    <div class="brand">
+      <span class="brand-text">许愿池</span>
+      <span class="brand-icon">🏮</span>
+    </div>
+    <a class="wish-btn" href="{{ wish_entry_url }}" target="_blank" rel="noopener">
+      <span class="btn-text">去许愿</span>
+      <span class="btn-sparkle">✨</span>
+    </a>
   </header>
 
   <main class="content">
+    <!-- 弹幕区域 -->
     <div id="danmaku" class="danmaku"></div>
 
+    <!-- 愿望卡片列表 -->
     <section class="list">
       {% for w in wishes %}
-      <div class="wish">
-        <div class="wish-content">{{ w.content }}</div>
-        <div class="wish-author">{{ w.author }}</div>
-      </div>
+      <article class="wish-card">
+        <div class="wish-inner">
+          <div class="wish-front">
+            <div class="wish-emoji">{{ w.emoji or '🎯' }}</div>
+            <p class="wish-content">{{ w.content }}</p>
+            <div class="wish-footer">
+              <span class="wish-author">{{ w.author }}</span>
+              <span class="wish-date">{{ w.date or '2025' }}</span>
+            </div>
+            <button class="flip-btn" aria-label="查看详情">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M10 4L10 16M10 16L6 12M10 16L14 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <div class="wish-back">
+            <div class="blessing-content">
+              <p class="blessing-text">愿你的愿望成真</p>
+              <p class="blessing-sub">✨ 新年好运连连 ✨</p>
+            </div>
+            <div class="back-actions">
+              <button class="share-btn" aria-label="生成分享卡片" data-content="{{ w.content }}" data-author="{{ w.author }}">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M4 10L16 10M16 10L12 6M16 10L12 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                <span>生成卡片</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
       {% endfor %}
     </section>
   </main>
 
+  <!-- 页脚 -->
   <footer class="footer">
-    <p>用 <span class="footer-heart">❤️</span> 许下美好愿望 · 新年快乐</p>
-    <p style="margin-top: 8px; font-size: 12px; opacity: 0.7;">{{ wishes|length }} 个愿望已收集</p>
+    <div class="footer-content">
+      <p class="footer-text">用 <span class="footer-heart">❤️</span> 许下美好愿望</p>
+      <p class="footer-subtitle">新年快乐 · 万事如意</p>
+      <p class="footer-count">{{ wishes|length }} 个愿望已收集</p>
+    </div>
+    <div class="footer-waves">
+      <div class="wave wave-1"></div>
+      <div class="wave wave-2"></div>
+    </div>
   </footer>
+
+  <!-- 分享卡片模态框 -->
+  <div class="share-modal" id="shareModal">
+    <div class="share-modal-content">
+      <div class="share-modal-header">
+        <h3>分享你的愿望</h3>
+        <button class="share-modal-close" aria-label="关闭">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="share-modal-body">
+        <canvas id="shareCanvas"></canvas>
+      </div>
+      <div class="share-modal-footer">
+        <button class="share-download-btn" id="downloadBtn">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 13L10 3M10 13L6 9M10 13L14 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 13V15C3 15.9319 3 16.3978 3.15224 16.7654C3.35523 17.2554 3.74458 17.6448 4.23463 17.8478C4.60218 18 5.06812 18 6 18H14C14.9319 18 15.3978 18 15.7654 17.8478C16.2554 17.6448 16.6448 17.2554 16.8478 16.7654C17 16.3978 17 15.9319 17 15V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          保存图片
+        </button>
+      </div>
+    </div>
+  </div>
 
   <script>
     window.WISHES = {{ wishes|tojson }};
   </script>
   <script src="{{ url_for('static', filename='js/danmaku.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs2@0.0.2/qrcode.min.js"></script>
+  <script src="{{ url_for('static', filename='js/effects.js') }}"></script>
 </body>
 </html>

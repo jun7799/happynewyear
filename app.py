@@ -300,5 +300,70 @@ def api_wishes():
         return jsonify([])
 
 
+@app.route("/api/redirect-url")
+def api_redirect_url():
+    """根据用户IP归属地返回跳转链接"""
+    # 国内链接和国外链接
+    domestic_url = "https://wish.baihehuakai666.asia/"
+    overseas_url = "https://dollar.avosapps.us/"
+
+    # 获取用户真实IP
+    def get_client_ip():
+        # 尝试从各种头部获取真实IP
+        headers_to_check = [
+            'X-Forwarded-For',
+            'X-Real-IP',
+            'CF-Connecting-IP',
+            'X-Client-IP',
+        ]
+        for header in headers_to_check:
+            ip = request.headers.get(header)
+            if ip:
+                # X-Forwarded-For 可能包含多个IP，取第一个
+                if header == 'X-Forwarded-For':
+                    ip = ip.split(',')[0].strip()
+                return ip
+        # 回退到 remote_addr
+        return request.remote_addr
+
+    client_ip = get_client_ip()
+    logger.info(f"Client IP: {client_ip}")
+
+    # 判断是否为国内IP
+    # 1. 先检查是否为本地/私有IP
+    is_local = False
+    if client_ip in ['127.0.0.1', 'localhost', '::1'] or client_ip.startswith('192.168.') or client_ip.startswith('10.') or client_ip.startswith('172.16.'):
+        is_local = True
+
+    # 2. 使用 IP 定位 API 判断
+    is_china = False
+    if not is_local:
+        try:
+            # 使用免费的 ipapi.co API（无需密钥，限制有限但够用）
+            response = requests.get(f"https://ipapi.co/{client_ip}/country/", timeout=3)
+            if response.status_code == 200:
+                country_code = response.text.strip()
+                logger.info(f"Country code for {client_ip}: {country_code}")
+                is_china = country_code == 'CN'
+            else:
+                logger.warning(f"IP API returned status {response.status_code}, using default (China)")
+                is_china = True  # API失败时默认认为是国内
+        except Exception as e:
+            logger.warning(f"IP lookup failed: {e}, using default (China)")
+            is_china = True  # 出错时默认认为是国内
+    else:
+        # 本地开发环境，默认国内
+        is_china = True
+
+    redirect_url = domestic_url if is_china else overseas_url
+
+    logger.info(f"Redirect decision: is_china={is_china}, url={redirect_url}")
+    return jsonify({
+        "url": redirect_url,
+        "is_china": is_china,
+        "client_ip": client_ip
+    })
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
